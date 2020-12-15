@@ -1,3 +1,4 @@
+@import '~antd/dist/antd.css';
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +11,13 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+.input-container {
+  margin-top: 100px;
+}
+.layout {
+  min-height: 100vh;
+}
+.site-card-wrapper {
+  margin-top: 30px;
 }
