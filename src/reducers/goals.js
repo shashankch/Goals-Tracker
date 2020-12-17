@@ -11,10 +11,23 @@ export function goals(state = initialState, action) {
         goals: [...state.goals, action.goal],
       };
     case UPDATE_STATUS:
-      return {};
     case UPDATE_STREAK:
-      return {};
+      let obj = state.goals.filter((item) => item.title === action.status[1]);
+      console.log('object', obj.status);
+      let filter = state.goals.filter(
+        (item) => item.title !== action.status[1],
+      );
+      obj.status.splice(action.status[2], 0, action.status[0]);
+      return {
+        goals: [...filter, obj],
+      };
+
     default:
       return state;
   }
 }
+
+//  let filter = state.goals.filter((goal) => goal.title !== action.goal.title);
+//  return {
+//    goals: [...filter, action.goal],
+//  };
