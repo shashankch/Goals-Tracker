@@ -1,22 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import { Input, Layout, Menu, Row, Col, Card } from 'antd';
-import { Table, Tag, Space } from 'antd';
+import { Row, Col } from 'antd';
+import { Table, notification } from 'antd';
 import { Select } from 'antd';
 import { connect } from 'react-redux';
-import { updateStatus } from '../actions/goals';
+import { updateStatus, startAction } from '../actions/goals';
+
 function Tracker(props) {
   const { Option } = Select;
   var date = new Date();
   var dt = date.getDate();
   var mt = date.toLocaleString('default', { month: 'short' });
-  console.log('tracker$$$', props.state.goals);
+
   const { goals } = props.state.goals;
 
   const handleUpdateStatus = (value) => {
     console.log('value', value);
     var arr = value.split('-');
-    console.log('****', arr);
+
+    props.dispatch(startAction());
     props.dispatch(updateStatus(arr));
+    openNotify('success');
+  };
+  const openNotify = (type) => {
+    notification[type]({
+      message: 'Status update',
+      description: 'You Successfully updated status of goal!!',
+    });
   };
   const columns = [
     {
@@ -31,15 +39,13 @@ function Tracker(props) {
       render: (goal) => (
         <>
           <Select
-            defaultValue='None'
+            defaultValue={goal.status[6]}
             style={{ width: 120 }}
             onChange={handleUpdateStatus}
           >
-            <Option value={'Not Done-' + JSON.stringify(goal) + '-6'}>
-              Not Done
-            </Option>
-            <Option value={'Done-' + goal + '-6'}>Done</Option>
-            <Option value={'None-' + goal + '-6'}>None</Option>
+            <Option value={'Not Done-' + goal.title + '-6'}>Not Done</Option>
+            <Option value={'Done-' + goal.title + '-6'}>Done</Option>
+            <Option value={'None-' + goal.title + '-6'}>None</Option>
           </Select>
         </>
       ),
@@ -51,7 +57,7 @@ function Tracker(props) {
       render: (goal) => (
         <>
           <Select
-            defaultValue='None'
+            defaultValue={goal.status[5]}
             style={{ width: 120 }}
             onChange={handleUpdateStatus}
           >
@@ -69,7 +75,7 @@ function Tracker(props) {
       render: (goal) => (
         <>
           <Select
-            defaultValue='None'
+            defaultValue={goal.status[4]}
             style={{ width: 120 }}
             onChange={handleUpdateStatus}
           >
@@ -87,7 +93,7 @@ function Tracker(props) {
       render: (goal) => (
         <>
           <Select
-            defaultValue='None'
+            defaultValue={goal.status[3]}
             style={{ width: 120 }}
             onChange={handleUpdateStatus}
           >
@@ -105,7 +111,7 @@ function Tracker(props) {
       render: (goal) => (
         <>
           <Select
-            defaultValue='None'
+            defaultValue={goal.status[2]}
             style={{ width: 120 }}
             onChange={handleUpdateStatus}
           >
@@ -123,7 +129,7 @@ function Tracker(props) {
       render: (goal) => (
         <>
           <Select
-            defaultValue='None'
+            defaultValue={goal.status[1]}
             style={{ width: 120 }}
             onChange={handleUpdateStatus}
           >
@@ -141,7 +147,7 @@ function Tracker(props) {
       render: (goal) => (
         <>
           <Select
-            defaultValue='None'
+            defaultValue={goal.status[0]}
             style={{ width: 120 }}
             onChange={handleUpdateStatus}
           >
@@ -171,7 +177,11 @@ function Tracker(props) {
   });
   return (
     <div className='tracker-container'>
-      <Table columns={columns} dataSource={data} />
+      <Row justify='space-around' align='middle'>
+        <Col span={22}>
+          <Table columns={columns} dataSource={data} />
+        </Col>
+      </Row>
     </div>
   );
 }

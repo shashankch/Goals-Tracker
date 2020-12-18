@@ -1,4 +1,9 @@
-import { UPDATE_STATUS, ADD_GOAL, UPDATE_STREAK } from './actionTypes';
+import {
+  UPDATE_STATUS,
+  ADD_GOAL,
+  START_ACTION,
+  DELETE_GOAL,
+} from './actionTypes';
 
 export function updateStatus(status) {
   return {
@@ -12,9 +17,17 @@ export function addGoal(goal) {
     goal,
   };
 }
-export function updateStreak(streak) {
+
+export function deleteGoal(goal) {
+  
   return {
-    type: UPDATE_STREAK,
-    streak,
+    type: DELETE_GOAL,
+    goal,
+  };
+}
+
+export function startAction() {
+  return {
+    type: START_ACTION,
   };
 }

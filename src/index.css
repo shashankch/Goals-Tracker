@@ -13,11 +13,12 @@ code {
     monospace;
 }
 .input-container {
-  margin-top: 100px;
+  margin-top: 50px;
 }
 .layout {
   min-height: 100vh;
 }
-.site-card-wrapper {
+.site-card-wrapper,
+.tracker-container {
   margin-top: 30px;
 }
