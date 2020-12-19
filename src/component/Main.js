@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
 import { Form, Input, Row, Col } from 'antd';
-import { Button, notification } from 'antd';
-import { addGoal, startAction, deleteGoal } from '../actions/goals';
+import { Button } from 'antd';
+import { addGoal, deleteGoal } from '../actions/goals';
 import { connect } from 'react-redux';
 import Habit from './Habit';
+import { openNotify, layout, tailLayout } from '../helpers';
 function Main(props) {
+  //input the goal title
   const [title, setTitle] = useState('');
+
   const handleAddChange = (e) => {
     setTitle(e.target.value);
   };
+
+  //to dispatch action to add goal
   const handleAddGoal = () => {
-    props.dispatch(startAction());
     props.dispatch(
       addGoal({
-        key: Math.random() * 100,
+        key: Math.round(Math.random() * 100),
         title: title,
         status: ['None', 'None', 'None', 'None', 'None', 'None', 'None'],
         streak: 0,
@@ -28,32 +32,15 @@ function Main(props) {
     );
   };
 
-  const openNotify = (type, desc, message) => {
-    notification[type]({
-      message: desc,
-      description: message,
-    });
-  };
-  const layout = {
-    wrapperCol: {
-      span: 18,
-      offset: 2,
-    },
-  };
-  const tailLayout = {
-    wrapperCol: {
-      offset: 9,
-      span: 4,
-    },
-  };
-
+  //to dispatch action to delete goal
   const handleDelete = (goal) => {
     console.log('delete', goal);
     props.dispatch(deleteGoal(goal));
 
     openNotify('error', 'Goal Removed', 'You have Successfully deleted goal!!');
   };
-  console.log('jhk', props);
+
+  // render input and add button along with display all cards=goal added
   return (
     <Row justify='space-around' align='middle'>
       <Col span={12}>

@@ -1,29 +1,23 @@
-import {
-  UPDATE_STATUS,
-  ADD_GOAL,
-  DELETE_GOAL,
-  START_ACTION,
-} from '../actions/actionTypes';
+import { UPDATE_STATUS, ADD_GOAL, DELETE_GOAL } from '../actions/actionTypes';
 
+// initial goal state
 const initialState = {
   goals: [],
-  flag: false,
 };
 
+//to update store- actions- add,update,remove goal
 export function goals(state = initialState, action) {
   switch (action.type) {
-    case START_ACTION:
-      return {
-        goals: state.goals,
-        flag: true,
-      };
-
+    //add goal
     case ADD_GOAL:
       return {
         goals: [...state.goals, action.goal],
         flag: false,
       };
+
+    //update goal
     case UPDATE_STATUS:
+      //update status of goal
       let updated = state.goals.map((goal) => {
         if (goal.title === action.status[1]) {
           goal.status[action.status[2]] = action.status[0];
@@ -42,6 +36,8 @@ export function goals(state = initialState, action) {
       return {
         goals: updated,
       };
+
+    //delete goal
     case DELETE_GOAL:
       let filtered = state.goals.filter((goal) => goal.key !== action.goal.key);
       return {

@@ -3,16 +3,18 @@ import thunk from 'redux-thunk';
 import { logger } from 'redux-logger';
 import reducer from '../reducers';
 
-function saveLocal(state) {
+//to store store data in localStorage
+const saveLocal = (state) => {
   try {
     const serialisedState = JSON.stringify(state);
     localStorage.setItem('goal', serialisedState);
   } catch (e) {
     console.warn(e);
   }
-}
+};
 
-function loadLocal() {
+//to get data from localStorage
+const loadLocal = () => {
   try {
     const serialisedState = localStorage.getItem('goal');
     if (serialisedState === null) return undefined;
@@ -21,8 +23,9 @@ function loadLocal() {
     console.warn(e);
     return undefined;
   }
-}
+};
 
+//return store with middleware
 let store;
 export function configureStore() {
   store = createStore(reducer, loadLocal(), applyMiddleware(thunk, logger));

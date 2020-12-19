@@ -1,10 +1,9 @@
-import { Row, Col } from 'antd';
-import { Table, notification } from 'antd';
-import { Select } from 'antd';
+import { Row, Col, Table, Select } from 'antd';
 import { connect } from 'react-redux';
-import { updateStatus, startAction } from '../actions/goals';
-
+import { updateStatus } from '../actions/goals';
+import { openNotify } from '../helpers';
 function Tracker(props) {
+  // display previous 6 dates and month
   const { Option } = Select;
   var date = new Date();
   var dt = date.getDate();
@@ -12,20 +11,20 @@ function Tracker(props) {
 
   const { goals } = props.state.goals;
 
+  //to dispatch action to update status of particular day of that goal.
   const handleUpdateStatus = (value) => {
     console.log('value', value);
     var arr = value.split('-');
 
-    props.dispatch(startAction());
     props.dispatch(updateStatus(arr));
-    openNotify('success');
+    openNotify(
+      'success',
+      'Status update',
+      'You Successfully updated status of goal!!'
+    );
   };
-  const openNotify = (type) => {
-    notification[type]({
-      message: 'Status update',
-      description: 'You Successfully updated status of goal!!',
-    });
-  };
+
+  // columns- goal title and 7 days status. configuration to pass to render table..(ant design)
   const columns = [
     {
       title: 'Goal',
@@ -160,6 +159,7 @@ function Tracker(props) {
     },
   ];
 
+  // to populate data in table...
   const data = [];
   goals.map((goal, index) => {
     data.push({
@@ -175,6 +175,8 @@ function Tracker(props) {
     });
     return data;
   });
+
+  //render table of goals with prev 6 days status and dropdown to update status..
   return (
     <div className='tracker-container'>
       <Row justify='space-around' align='middle'>

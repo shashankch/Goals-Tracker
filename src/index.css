@@ -12,12 +12,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* input box styling */
 .input-container {
   margin-top: 50px;
 }
+
+/* layout styling */
 .layout {
   min-height: 100vh;
 }
+
+/* card spacing */
 .site-card-wrapper,
 .tracker-container {
   margin-top: 30px;

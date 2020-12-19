@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 
+//display navbar
 function Navbar() {
   const { Header } = Layout;
   return (

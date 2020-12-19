@@ -1,16 +1,14 @@
-import {
-  UPDATE_STATUS,
-  ADD_GOAL,
-  START_ACTION,
-  DELETE_GOAL,
-} from './actionTypes';
+import { UPDATE_STATUS, ADD_GOAL, DELETE_GOAL } from './actionTypes';
 
+//update status
 export function updateStatus(status) {
   return {
     type: UPDATE_STATUS,
     status,
   };
 }
+
+//add goal
 export function addGoal(goal) {
   return {
     type: ADD_GOAL,
@@ -18,16 +16,10 @@ export function addGoal(goal) {
   };
 }
 
+//delete goal
 export function deleteGoal(goal) {
-  
   return {
     type: DELETE_GOAL,
     goal,
-  };
-}
-
-export function startAction() {
-  return {
-    type: START_ACTION,
   };
 }

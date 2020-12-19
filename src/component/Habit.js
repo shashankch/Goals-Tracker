@@ -1,11 +1,17 @@
 import { Row, Col, Card, Statistic, Button } from 'antd';
 
 function Habit(props) {
+
+  
   const { goals } = props.goals;
-  console.log('jhk', props);
+  const { handleDelete } = props;
+
+  //redirect to progress page
   const redirect = () => {
     props.history.push('/progress');
   };
+
+  // generate cards for all the goals added..
   return (
     <div className='habit-container'>
       <div className='site-card-wrapper'>
@@ -18,7 +24,7 @@ function Habit(props) {
                     title={goal.title}
                     bordered={false}
                     extra={
-                      <Button danger onClick={(e) => props.handleDelete(goal)}>
+                      <Button danger onClick={(e) => handleDelete(goal)}>
                         Remove
                       </Button>
                     }
