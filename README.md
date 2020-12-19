@@ -4,7 +4,7 @@
 ![project screenshots](src/assets/img2.png)
 ![project screenshots](src/assets/img3.png)
 
-#### deployed link:
+#### deployed link: [Link](https://goal-tracker-by-shashank.web.app/)
 
 #### Features:
 
@@ -17,9 +17,6 @@
 - User can toggle between the status mentioned above.
 
 ## Directory Structure:
-
-[Link](https://goal-tracker-by-shashank.web.app/)
-
 ```
 ├── README.md
 ├── package-lock.json
