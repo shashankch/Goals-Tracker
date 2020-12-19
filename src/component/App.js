@@ -8,13 +8,6 @@ import { Carousel } from 'antd';
 import { addGoal, startAction, deleteGoal } from '../actions/goals';
 import React, { useEffect } from 'react';
 function App(props) {
-  useEffect(() => {
-    if (localStorage.getItem('goals') === null) {
-      localStorage.setItem('goals', JSON.stringify(props.state.goals));
-    } else {
-      props.dispatch(addGoal(JSON.parse(localStorage.getItem('goals')).goals));
-    }
-  }, []);
   const { Footer, Content } = Layout;
   const contentStyle = {
     height: '360px',

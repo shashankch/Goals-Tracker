@@ -19,7 +19,7 @@ function Main(props) {
         streak: 0,
       })
     );
-    localStorage.setItem('goals', JSON.stringify(props.state.goals));
+
     setTitle('');
     openNotify(
       'success',
@@ -50,10 +50,10 @@ function Main(props) {
   const handleDelete = (goal) => {
     console.log('delete', goal);
     props.dispatch(deleteGoal(goal));
-    localStorage.setItem('goals', JSON.stringify(props.state.goals));
+
     openNotify('error', 'Goal Removed', 'You have Successfully deleted goal!!');
   };
-
+  console.log('jhk', props);
   return (
     <Row justify='space-around' align='middle'>
       <Col span={12}>
@@ -94,6 +94,7 @@ function Main(props) {
           goals={props.state.goals}
           notify={openNotify}
           handleDelete={handleDelete}
+          history={props.history}
         />
       </Col>
     </Row>
