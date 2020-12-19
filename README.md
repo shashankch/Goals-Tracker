@@ -4,6 +4,8 @@
 ![project screenshots](src/assets/img2.png)
 ![project screenshots](src/assets/img3.png)
 
+#### deployed link:
+
 #### Features:
 
 - Add multiple habits to track like reading a book, going to the gym etc
@@ -15,6 +17,8 @@
 - User can toggle between the status mentioned above.
 
 ## Directory Structure:
+
+[Link](https://goal-tracker-by-shashank.web.app/)
 
 ```
 ├── README.md
